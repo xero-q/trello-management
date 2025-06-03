@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   /**
    * Application title
    */
-  title = 'planflow';
+  title = 'PlanFlow';
 
   /**
    * Current year for copyright information
@@ -52,13 +52,16 @@ export class AppComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: object
   ) {
     if (isPlatformServer(this.platformId)) {
-      this.titleService.setTitle('PlanFlow - Anibal Sanchez');
+      this.titleService.setTitle('PlanFlow');
       this.meta.addTags([
         {
           name: 'description',
           content: 'This App allows to manage your Trello account',
         },
-        { name: 'keywords', content: 'Trello, Treew Inc., Anibal Sanchez' },
+        {
+          name: 'keywords',
+          content: 'Trello, Angular, web, development, Anibal Sanchez',
+        },
         { name: 'author', content: 'Anibal Sanchez Numa' },
       ]);
     }
