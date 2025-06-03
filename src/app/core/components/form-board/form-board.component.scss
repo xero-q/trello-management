@@ -41,11 +41,12 @@
 
   button {
     margin-top:0.4rem;
-  }
+  } 
+}
 
- 
 
-  @media (min-width: 600px) {
-    max-width: 400px;
+@media (min-width:600px){
+  .form-board {  
+    max-width:400px;
   }
 }

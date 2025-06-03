@@ -15,7 +15,7 @@ import { map } from 'rxjs';
 import { TrelloListComponent } from '../trello-list/trello-list.component';
 import { ToastrService } from 'ngx-toastr';
 import { NgIf } from '@angular/common';
-import { LoaderComponent } from '../../core/components/loader/loader.component';
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { ModalComponent } from '../../core/components/modal/modal.component';
 import TrelloList from '../../shared/interfaces/trello-list';
 import { TrelloService } from '../../core/services/trello.service';

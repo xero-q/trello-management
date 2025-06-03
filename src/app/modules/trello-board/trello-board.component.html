@@ -3,7 +3,7 @@
     Ask AI Recommendation
   </button>
   @if (isPromptingAI()){
-  <app-loader></app-loader>
+  <app-loader />
   } @else {@if (boardRecommendation){
   <ng-container *ngIf="displayGeminiResponse()">
     <app-modal (closeModal)="closeModal()">
@@ -17,7 +17,7 @@
 </div>
 <div class="trello-list-container">
   @if (isLoading()) {
-  <app-loader></app-loader>
+  <app-loader />
   } @else {
   <h3 class="h3-header">{{ stateService.getSelectedBoard()?.name }}</h3>
 

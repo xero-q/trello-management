@@ -3,7 +3,7 @@
   <h3>{{ card?.name }}</h3>
 </div>
 } @if (isLoading()){
-<app-loader></app-loader>
+<app-loader />
 } @if (!isLoading() && cardId){
 <div class="trello-card-container">
   <h3 class="return-link h3-header" (click)="goToBoard()">Return to Board</h3>

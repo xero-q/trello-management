@@ -7,7 +7,7 @@ import { TrelloService } from '../../services/trello.service';
 import { map } from 'rxjs';
 import TrelloBoard from '../../../shared/interfaces/trello-board';
 import { Router } from '@angular/router';
-import { LoaderComponent } from '../loader/loader.component';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { FormBoardComponent } from '../form-board/form-board.component';
 import { NgIf, NgStyle } from '@angular/common';
 import { StateService } from '../../services/state.service';

@@ -6,7 +6,7 @@ import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf, NgStyle } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderComponent } from '../../core/components/loader/loader.component';
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { ModalComponent } from '../../core/components/modal/modal.component';
 import { FormCardComponent } from '../../core/components/form-card/form-card.component';
 import TrelloCard from '../../shared/interfaces/trello-card';
