@@ -1,0 +1,36 @@
+<form
+  [formGroup]="boardForm"
+  (ngSubmit)="onSubmit()"
+  class="form-board"
+  novalidate
+>
+  <h3 class="h3-header" id="form-title">Add New Board</h3>
+
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input
+      #nameInput
+      id="name"
+      type="text"
+      formControlName="name"
+      [attr.aria-invalid]="boardForm.get('name')?.invalid"
+      aria-describedby="nameError"
+    />
+
+    <small
+      id="nameError"
+      *ngIf="
+        boardForm.get('name')?.invalid &&
+        (boardForm.get('name')?.touched || boardForm.get('name')?.dirty)
+      "
+      class="error-message"
+      role="alert"
+    >
+      Name is required
+    </small>
+  </div>
+
+  <button type="submit" class="btn-secondary full-width">
+    {{ isSubmitting() ? "Submitting" : "Submit" }}
+  </button>
+</form>

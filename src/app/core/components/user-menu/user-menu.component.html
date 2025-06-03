@@ -1,0 +1,27 @@
+<div class="user-menu">
+  <button class="avatar-button" (click)="toggleMenu()">
+    <img
+      [src]="`https://ui-avatars.com/api/?name=${stateService.getFullName()}&background=333333&color=ffffff`"
+      alt="User Avatar"
+      class="avatar"
+    />
+  </button>
+
+  <ul *ngIf="isMenuOpen" class="menu-dropdown">
+    <li
+      (click)="navigateToDashboard()"
+      tabindex="0"
+      (keydown)="onKeydownDashboard($event)"
+    >
+      Dashboard
+    </li>
+    <li
+      (click)="logout()"
+      class="logout"
+      tabindex="0"
+      (keydown)="onKeydownLogout($event)"
+    >
+      Logout
+    </li>
+  </ul>
+</div>

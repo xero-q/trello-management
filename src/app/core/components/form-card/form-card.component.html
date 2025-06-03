@@ -1,0 +1,52 @@
+<form
+  [formGroup]="cardForm"
+  (ngSubmit)="onSubmit()"
+  class="form-card"
+  novalidate
+>
+  <h3 class="h3-header" id="form-card-title">
+    {{ !card ? "Add New Card" : "Update Card" }}
+  </h3>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input
+      #nameInput
+      id="name"
+      type="text"
+      formControlName="name"
+      [attr.aria-invalid]="cardForm.get('name')?.invalid"
+      aria-describedby="nameError"
+    />
+
+    <div
+      *ngIf="
+        cardForm.get('name')?.invalid &&
+        (cardForm.get('name')?.touched || cardForm.get('name')?.dirty)
+      "
+    >
+      <small
+        *ngIf="cardForm.get('name')?.errors?.['required']"
+        id="nameError"
+        class="error-message"
+        role="alert"
+      >
+        Name is required
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="desc">Description:</label>
+    <textarea
+      id="desc"
+      type="text"
+      formControlName="desc"
+      aria-label="Card description"
+      rows="5"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn-secondary full-width">
+    {{ isSubmitting() ? "Submitting..." : "Submit" }}
+  </button>
+</form>

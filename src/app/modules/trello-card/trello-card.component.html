@@ -1,0 +1,32 @@
+@if (!cardId){
+<div class="trello-card pointer" tabindex="0" (keydown)="onKeydownCard($event)">
+  <h3>{{ card?.name }}</h3>
+</div>
+} @if (isLoading()){
+<app-loader></app-loader>
+} @if (!isLoading() && cardId){
+<div class="trello-card-container">
+  <h3 class="return-link h3-header" (click)="goToBoard()">Return to Board</h3>
+  <div class="trello-card">
+    <h3>{{ card?.name }}</h3>
+    <markdown [data]="card?.desc"></markdown>
+  </div>
+
+  <button
+    (click)="openModal()"
+    class="btn-secondary full-width"
+    [ngStyle]="{ 'margin-top': '0.5rem' }"
+  >
+    Edit Card
+  </button>
+</div>
+}
+
+<ng-container *ngIf="displayCardForm() && card">
+  <app-modal (closeModal)="closeModal()">
+    <app-form-card
+      (cardAddedUpdated)="onCardUpdatedAndClose()"
+      [card]="card"
+    ></app-form-card>
+  </app-modal>
+</ng-container>

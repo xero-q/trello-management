@@ -1,0 +1,41 @@
+<div class="ai-container">
+  <button class="btn-secondary" (click)="doAskBoardRecommendation()">
+    Ask AI Recommendation
+  </button>
+  @if (isPromptingAI()){
+  <app-loader></app-loader>
+  } @else {@if (boardRecommendation){
+  <ng-container *ngIf="displayGeminiResponse()">
+    <app-modal (closeModal)="closeModal()">
+      <div class="gemini-response">
+        <h3>AI Response:</h3>
+        <markdown [data]="boardRecommendation"></markdown>
+      </div>
+    </app-modal>
+  </ng-container>
+  } }
+</div>
+<div class="trello-list-container">
+  @if (isLoading()) {
+  <app-loader></app-loader>
+  } @else {
+  <h3 class="h3-header">{{ stateService.getSelectedBoard()?.name }}</h3>
+
+  @if (getBoardMetrics().length > 0) {
+  <div class="metrics">
+    @for (metric of getBoardMetrics(); track metric.name) {
+    <div>
+      <strong>{{ metric.name }}: {{ metric.cards.length }}</strong>
+    </div>
+    }
+  </div>
+  } @if (tasksLists().length > 0) {
+  <div class="trello-lists">
+    @for (list of tasksLists(); track list.id) {
+    <app-trello-list [list]="list"></app-trello-list>
+    }
+  </div>
+  } @else {
+  <div class="trello-lists"><h1>No lists</h1></div>
+  } }
+</div>

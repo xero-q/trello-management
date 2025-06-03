@@ -1,0 +1,51 @@
+<div class="boards-list">
+  <h3 class="h3-header">Boards List</h3>
+  <div class="boards-list-group">
+    <select (change)="onBoardSelected($event)" class="select-boards-list">
+      <option value="">Select a board</option>
+      " @for (board of boardsList(); track board.id) {
+      <option
+        value="{{ board.id }}"
+        [selected]="board.id === stateService.getSelectedBoard()?.id"
+      >
+        {{ board.name }}
+      </option>
+      }
+    </select>
+    <button
+      (click)="loadBoards()"
+      class="btn-secondary"
+      aria-label="Reload Boards"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 1 1 .908-.417A6 6 0 1 1 8 2v1z"
+        />
+        <path d="M8 1v4l3-3-3-3v4z" />
+      </svg>
+    </button>
+  </div>
+  @if (isLoading){
+  <app-loader></app-loader>
+  }
+
+  <button
+    (click)="openModal()"
+    class="btn-secondary full-width"
+    [ngStyle]="{ 'margin-top': '0.5rem', width: '274px' }"
+  >
+    Add Board
+  </button>
+</div>
+
+<ng-container *ngIf="displayBoardForm">
+  <app-modal (closeModal)="closeModal()">
+    <app-form-board (boardAdded)="onBoardAddedAndClose()"></app-form-board>
+  </app-modal>
+</ng-container>

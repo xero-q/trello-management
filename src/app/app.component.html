@@ -1,0 +1,19 @@
+<div class="page">
+  <header>
+    <div class="header-account" *ngIf="isLoggedIn">
+      <app-user-menu></app-user-menu>
+      <app-trello-account></app-trello-account>
+    </div>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <span>&copy; {{ currentYear }}</span>
+    <span
+      ><a href="https://www.anibalnuma.com" target="_blank"
+        >Aníbal Sánchez Numa</a
+      ></span
+    >
+  </footer>
+</div>
