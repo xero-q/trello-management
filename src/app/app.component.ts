@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   /**
    * Application title
    */
-  title = 'PlanFlow';
+  title = 'Trello Management';
 
   /**
    * Current year for copyright information
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: object
   ) {
     if (isPlatformServer(this.platformId)) {
-      this.titleService.setTitle('PlanFlow');
+      this.titleService.setTitle('Trello Management');
       this.meta.addTags([
         {
           name: 'description',

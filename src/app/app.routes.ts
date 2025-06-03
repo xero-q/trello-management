@@ -48,4 +48,11 @@ export const routes: Routes = [
         (m) => m.TrelloCardComponent
       ),
   },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./core/components/redirect/redirect.component').then(
+        (m) => m.RedirectComponent
+      ),
+  },
 ];

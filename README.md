@@ -1,4 +1,4 @@
-# PlanFlow
+# Trello Management
 
 ## Steps for running the project
 
