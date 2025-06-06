@@ -15,7 +15,7 @@ import TrelloBoard from '../../../shared/interfaces/trello-board';
 import { Router } from '@angular/router';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { FormBoardComponent } from '../form-board/form-board.component';
-import { NgIf, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { StateService } from '../../services/state.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +27,7 @@ import ROUTES from '../../../shared/constants/routes';
  */
 @Component({
   selector: 'app-trello-account',
-  imports: [LoaderComponent, FormBoardComponent, NgStyle, NgIf, ModalComponent],
+  imports: [LoaderComponent, FormBoardComponent, NgStyle, ModalComponent],
   templateUrl: './trello-account.component.html',
   styleUrl: './trello-account.component.scss',
 })

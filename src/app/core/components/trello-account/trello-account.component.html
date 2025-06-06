@@ -44,8 +44,11 @@
   </button>
 </div>
 
-<ng-container *ngIf="displayBoardForm">
+@if (displayBoardForm()){
+<ng-container>
   <app-modal (closeModal)="closeModal()">
     <app-form-board (boardAdded)="onBoardAddedAndClose()"></app-form-board>
   </app-modal>
 </ng-container>
+
+}

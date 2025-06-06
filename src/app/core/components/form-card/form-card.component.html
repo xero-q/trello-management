@@ -5,7 +5,7 @@
   novalidate
 >
   <h3 class="h3-header" id="form-card-title">
-    {{ !card ? "Add New Card" : "Update Card" }}
+    {{ !card() ? "Add New Card" : "Update Card" }}
   </h3>
   <div class="form-group">
     <label for="name">Name:</label>

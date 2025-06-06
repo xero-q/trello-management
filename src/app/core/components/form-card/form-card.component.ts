@@ -5,7 +5,6 @@ import {
   ElementRef,
   inject,
   input,
-  Input,
   OnInit,
   output,
   signal,
@@ -40,12 +39,12 @@ export class FormCardComponent implements OnInit, AfterViewInit {
   /**
    * The ID of the list where the card will be added or updated.
    */
-  protected readonly idList = input<string | undefined>();
+  readonly idList = input<string>();
 
   /**
    * The card object being updated, or null if creating a new card.
    */
-  @Input() protected readonly card: TrelloCard | null = null;
+  card = input<TrelloCard>();
 
   /**
    * Emits an event when a card is added or updated.
@@ -56,6 +55,8 @@ export class FormCardComponent implements OnInit, AfterViewInit {
    * Flag indicating whether the form is currently being submitted.
    */
   protected readonly isSubmitting = signal(false);
+
+  test = input<boolean>();
 
   /**
    * Reference to the name input element.
@@ -82,14 +83,14 @@ export class FormCardComponent implements OnInit, AfterViewInit {
    * Initializes the form group instance based on whether a card is being updated or created.
    */
   ngOnInit() {
-    this.cardForm = !this.card
+    this.cardForm = !this.card()
       ? this.fb.group({
           name: ['', Validators.required],
           desc: [''],
         })
       : this.fb.group({
-          name: [this.card?.name, Validators.required],
-          desc: [this.card?.desc],
+          name: [this.card()?.name, Validators.required],
+          desc: [this.card()?.desc],
         });
   }
 
@@ -109,7 +110,7 @@ export class FormCardComponent implements OnInit, AfterViewInit {
       const name = this.cardForm.get('name')?.value.trim();
       const desc = this.cardForm.get('desc')?.value.trim();
 
-      if (!this.card) {
+      if (!this.card()) {
         // Adding a new card
         this.trelloService
           .addNewCard(name, desc, this.idList() ?? '')
@@ -130,7 +131,7 @@ export class FormCardComponent implements OnInit, AfterViewInit {
         const name = this.cardForm.get('name')?.value.trim();
         const description = this.cardForm.get('desc')?.value.trim();
         this.trelloService
-          .updateCard(this.card?.id, name, description)
+          .updateCard(this.card()?.id || '', name, description)
           .subscribe({
             next: () => {
               this.cardAddedUpdated.emit();
