@@ -2,9 +2,8 @@
  * @class UserMenuComponent
  * @description Component that provides a user menu with navigation and authentication options
  */
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
 import { StateService } from '../../services/state.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
  */
 @Component({
   selector: 'app-user-menu',
-  imports: [NgIf],
+  imports: [],
   templateUrl: './user-menu.component.html',
   styleUrls: ['./user-menu.component.scss'],
 })
@@ -22,32 +21,35 @@ export class UserMenuComponent {
   /**
    * Flag indicating if the menu is currently open
    */
-  isMenuOpen = false;
+  protected readonly isMenuOpen = signal(false);
 
   /**
-   * Constructor that initializes the component with required services
-   * @param router - Navigation service
-   * @param authService - Authentication service
-   * @param stateService - Service for managing application state
+   * Navigation service
    */
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    public stateService: StateService
-  ) {}
+  private readonly router = inject(Router);
+
+  /**
+   * Service for managing application state
+   */
+  protected readonly stateService = inject(StateService);
+
+  /**
+   * Service for managing Authentication state
+   */
+  protected readonly authService = inject(AuthService);
 
   /**
    * Toggles the visibility of the menu
    */
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.update((value) => !value);
   }
 
   /**
    * Closes the menu
    */
   closeMenu(): void {
-    this.isMenuOpen = false;
+    this.isMenuOpen.set(false);
   }
 
   /**

@@ -2,7 +2,13 @@
  * @class TrelloAccountComponent
  * @description Component that manages Trello account boards and board creation
  */
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { TrelloService } from '../../services/trello.service';
 import { map } from 'rxjs';
 import TrelloBoard from '../../../shared/interfaces/trello-board';
@@ -29,32 +35,37 @@ export class TrelloAccountComponent implements OnInit {
   /**
    * Signal that holds the list of Trello boards
    */
-  boardsList: WritableSignal<TrelloBoard[]> = signal([]);
+  protected readonly boardsList: WritableSignal<TrelloBoard[]> = signal([]);
 
   /**
    * Flag indicating if the component is loading
    */
-  isLoading = true;
+  protected readonly isLoading = signal(true);
 
   /**
    * Flag controlling the visibility of the board creation form
    */
-  displayBoardForm = false;
+  protected readonly displayBoardForm = signal(false);
 
   /**
-   * Constructor that initializes the component with required services
-   * @param trelloService - Service for Trello API interactions
-   * @param router - Navigation service
-   * @param stateService - Service for managing application state
-   * @param toastr - Toast notification service
+   * Service for handling Trello API interactions
    */
-  constructor(
-    private trelloService: TrelloService,
-    private router: Router,
-    public stateService: StateService,
-    private toastr: ToastrService
-  ) {}
+  private readonly trelloService = inject(TrelloService);
 
+  /**
+   * Navigation service
+   */
+  private readonly router = inject(Router);
+
+  /**
+   * Service for managing application state
+   */
+  protected readonly stateService = inject(StateService);
+
+  /**
+   *  Toast notification service
+   */
+  private readonly toastr = inject(ToastrService);
   /**
    * Lifecycle hook that initializes the component
    */
@@ -67,7 +78,7 @@ export class TrelloAccountComponent implements OnInit {
    * Filters out closed boards and updates the boards list
    */
   loadBoards(): void {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     this.trelloService
       .getBoards()
@@ -77,10 +88,10 @@ export class TrelloAccountComponent implements OnInit {
       .subscribe({
         next: (boards: TrelloBoard[]) => {
           this.boardsList.set(boards);
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
         error: () => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.toastr.error('Error loading boards');
         },
       });
@@ -102,14 +113,14 @@ export class TrelloAccountComponent implements OnInit {
    * Opens the board creation form
    */
   openModal() {
-    this.displayBoardForm = true;
+    this.displayBoardForm.set(true);
   }
 
   /**
    * Closes the board creation form
    */
   closeModal() {
-    this.displayBoardForm = false;
+    this.displayBoardForm.set(false);
   }
 
   /**

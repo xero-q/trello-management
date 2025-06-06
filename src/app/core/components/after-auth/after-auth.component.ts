@@ -24,27 +24,27 @@ export class AfterAuthComponent implements OnInit {
   /**
    * Router service for accessing route parameters
    */
-  readonly route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
 
   /**
    * Service for handling authentication
    */
-  readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthService);
 
   /**
    * Service for Trello API interactions
    */
-  readonly trelloService = inject(TrelloService);
+  private readonly trelloService = inject(TrelloService);
 
   /**
    * Service for managing application state
    */
-  readonly stateService = inject(StateService);
+  private readonly stateService = inject(StateService);
 
   /**
    * Navigation service
    */
-  readonly router = inject(Router);
+  private readonly router = inject(Router);
 
   /**
    * Lifecycle hook that initializes the component

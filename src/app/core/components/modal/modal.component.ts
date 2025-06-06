@@ -18,7 +18,7 @@ export class ModalComponent {
    * Event emitter that triggers when the modal should be closed
    * @event
    */
-  closeModal = output<void>();
+  readonly closeModal = output<void>();
 
   /**
    * Closes the modal by emitting the close event

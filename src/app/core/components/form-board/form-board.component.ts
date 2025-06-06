@@ -36,38 +36,39 @@ export class FormBoardComponent implements OnInit, AfterViewInit {
   /**
    * Reactive form group for board creation
    */
-  boardForm!: FormGroup;
+  protected boardForm!: FormGroup;
 
   /**
    * Event emitter that triggers when a board is added
    * @event
    */
-  boardAdded = output<void>();
+  public readonly boardAdded = output<void>();
 
   /**
    * Flag indicating if the form is currently submitting
    */
-  isSubmitting = signal(false);
+  protected readonly isSubmitting = signal(false);
 
   /**
    * ViewChild reference to the name input element
    */
-  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('nameInput')
+  protected readonly nameInput!: ElementRef<HTMLInputElement>;
 
   /**
    * Form builder service for creating reactive forms
    */
-  fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
   /**
    * Service for Trello API interactions
    */
-  trelloService = inject(TrelloService);
+  private readonly trelloService = inject(TrelloService);
 
   /**
    * Toast notification service
    */
-  toastr = inject(ToastrService);
+  private readonly toastr = inject(ToastrService);
 
   /**
    * Lifecycle hook that initializes the form

@@ -7,7 +7,8 @@
     />
   </button>
 
-  <ul *ngIf="isMenuOpen" class="menu-dropdown">
+  @if (isMenuOpen()){
+  <ul class="menu-dropdown">
     <li
       (click)="navigateToDashboard()"
       tabindex="0"
@@ -24,4 +25,5 @@
       Logout
     </li>
   </ul>
+  }
 </div>

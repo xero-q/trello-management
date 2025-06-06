@@ -35,47 +35,48 @@ export class FormCardComponent implements OnInit, AfterViewInit {
   /**
    * The form group instance for the card form.
    */
-  cardForm!: FormGroup;
+  protected cardForm!: FormGroup;
 
   /**
    * The ID of the list where the card will be added or updated.
    */
-  idList = input<string | undefined>();
+  protected readonly idList = input<string | undefined>();
 
   /**
    * The card object being updated, or null if creating a new card.
    */
-  @Input() card: TrelloCard | null = null;
+  @Input() protected readonly card: TrelloCard | null = null;
 
   /**
    * Emits an event when a card is added or updated.
    */
-  cardAddedUpdated = output<void>();
+  readonly cardAddedUpdated = output<void>();
 
   /**
    * Flag indicating whether the form is currently being submitted.
    */
-  isSubmitting = signal(false);
+  protected readonly isSubmitting = signal(false);
 
   /**
    * Reference to the name input element.
    */
-  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('nameInput')
+  private readonly nameInput!: ElementRef<HTMLInputElement>;
 
   /**
    * Form builder service for creating reactive forms
    */
-  fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
   /**
    * Service for Trello API interactions
    */
-  trelloService = inject(TrelloService);
+  private readonly trelloService = inject(TrelloService);
 
   /**
    * Toast notification service
    */
-  toastr = inject(ToastrService);
+  private readonly toastr = inject(ToastrService);
 
   /**
    * Initializes the form group instance based on whether a card is being updated or created.
