@@ -42,7 +42,7 @@ export class FormCardComponent implements OnInit, AfterViewInit {
   readonly idList = input<string>();
 
   /**
-   * The card object being updated, or null if creating a new card.
+   * The card object being updated, or undefined if creating a new card.
    */
   card = input<TrelloCard>();
 
@@ -55,8 +55,6 @@ export class FormCardComponent implements OnInit, AfterViewInit {
    * Flag indicating whether the form is currently being submitted.
    */
   protected readonly isSubmitting = signal(false);
-
-  test = input<boolean>();
 
   /**
    * Reference to the name input element.
