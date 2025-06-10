@@ -2,7 +2,12 @@
  * @class ModalComponent
  * @description Reusable modal dialog component that can be used for various purposes
  */
-import { Component, HostListener, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  output,
+} from '@angular/core';
 
 /**
  * Component that provides a reusable modal dialog
@@ -12,6 +17,7 @@ import { Component, HostListener, output } from '@angular/core';
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
   /**

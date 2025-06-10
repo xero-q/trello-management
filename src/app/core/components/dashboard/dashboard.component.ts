@@ -2,24 +2,27 @@
  * @class DashboardComponent
  * @description Main dashboard component that serves as the landing page after authentication
  */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { StateService } from '../../services/state.service';
+import { AsyncPipe } from '@angular/common';
 
 /**
  * Dashboard component that manages the main application interface
  */
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
   /**
-   * Constructor that initializes the dashboard state
-   * @param stateService - Service for managing application state
+   * Service for managing application state
    */
-  constructor(public stateService: StateService) {
+  protected readonly stateService = inject(StateService);
+
+  constructor() {
     this.stateService.setSelectedBoard(null);
   }
 }

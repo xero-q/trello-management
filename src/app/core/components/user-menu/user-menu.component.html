@@ -1,7 +1,7 @@
 <div class="user-menu">
   <button class="avatar-button" (click)="toggleMenu()">
     <img
-      [src]="`https://ui-avatars.com/api/?name=${stateService.getFullName()}&background=333333&color=ffffff`"
+      [src]="`https://ui-avatars.com/api/?name=${stateService.getFullName() | async}&background=333333&color=ffffff`"
       alt="User Avatar"
       class="avatar"
     />

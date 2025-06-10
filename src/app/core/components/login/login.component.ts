@@ -2,7 +2,7 @@
  * @class LoginComponent
  * @description Component that handles user authentication with Trello OAuth
  */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
 /**
@@ -13,6 +13,7 @@ import { environment } from '../../../../environments/environment';
   imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   /**

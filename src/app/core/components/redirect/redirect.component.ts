@@ -2,7 +2,7 @@
  * @class RedirectComponent
  * @description Component that handles application routing based on authentication state
  */
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import ROUTES from '../../../shared/constants/routes';
@@ -16,6 +16,7 @@ import ROUTES from '../../../shared/constants/routes';
   imports: [],
   templateUrl: './redirect.component.html',
   styleUrl: './redirect.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RedirectComponent {
   /**

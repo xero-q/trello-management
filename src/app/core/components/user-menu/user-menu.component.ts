@@ -2,10 +2,17 @@
  * @class UserMenuComponent
  * @description Component that provides a user menu with navigation and authentication options
  */
-import { Component, HostListener, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { StateService } from '../../services/state.service';
 import { AuthService } from '../../services/auth.service';
+import { AsyncPipe } from '@angular/common';
 
 /**
  * Component that displays a user menu with options for navigation and authentication
@@ -13,9 +20,10 @@ import { AuthService } from '../../services/auth.service';
  */
 @Component({
   selector: 'app-user-menu',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './user-menu.component.html',
   styleUrls: ['./user-menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent {
   /**

@@ -5,6 +5,7 @@
 import { NgIf } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -31,6 +32,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [ReactiveFormsModule, NgIf],
   templateUrl: './form-board.component.html',
   styleUrl: './form-board.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormBoardComponent implements OnInit, AfterViewInit {
   /**

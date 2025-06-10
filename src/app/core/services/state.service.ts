@@ -10,6 +10,7 @@ import {
   UserMetrics,
 } from '../../shared/interfaces/metrics';
 import TrelloBoard from '../../shared/interfaces/trello-board';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
  * Service that manages application state and persists user data
@@ -25,9 +26,16 @@ export class StateService {
   selectedBoard: TrelloBoard | null = null;
 
   /**
-   * User's full name
+   * User's full name Subject
    */
-  fullName = '';
+
+  private readonly fullNameSubject = new BehaviorSubject<string | null>(null);
+
+  /**
+   * User's full name Obbservable
+   */
+
+  private readonly fullName$ = this.fullNameSubject.asObservable();
 
   /**
    * User's metrics data including board and list information
@@ -42,7 +50,7 @@ export class StateService {
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
       const name = localStorage.getItem('fullName');
-      this.fullName = name ?? '';
+      this.fullNameSubject.next(name);
     }
   }
 
@@ -68,7 +76,7 @@ export class StateService {
    * @param name - User's full name
    */
   setFullName(name: string): void {
-    this.fullName = name;
+    this.fullNameSubject.next(name);
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('fullName', name);
     }
@@ -78,8 +86,8 @@ export class StateService {
    * Gets the user's full name
    * @returns User's full name
    */
-  getFullName(): string {
-    return this.fullName;
+  getFullName(): Observable<string | null> {
+    return this.fullName$;
   }
 
   /**
