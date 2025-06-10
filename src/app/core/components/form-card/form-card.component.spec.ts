@@ -44,7 +44,7 @@ describe('FormCardComponent Integration', () => {
 
   it('should create and initialize form in add mode', () => {
     fixture.componentRef.setInput('idList', 'list-123');
-    component.card = null; // add mode
+    fixture.componentRef.setInput('card', undefined);
     fixture.detectChanges();
 
     expect(component.cardForm).toBeTruthy();
@@ -53,14 +53,15 @@ describe('FormCardComponent Integration', () => {
   });
 
   it('should create and initialize form in update mode', () => {
-    component.card = {
+    fixture.componentRef.setInput('card', {
       id: 'card-1',
       name: 'My Card',
       desc: 'Desc',
       closed: false,
       idBoard: 'board-1',
       idList: 'list-1',
-    };
+    });
+
     fixture.detectChanges();
 
     expect(component.cardForm).toBeTruthy();
@@ -70,7 +71,7 @@ describe('FormCardComponent Integration', () => {
 
   it('should call addNewCard and emit event on valid form submit in add mode', fakeAsync(() => {
     fixture.componentRef.setInput('idList', 'id-1');
-    component.card = null;
+    fixture.componentRef.setInput('card', undefined);
     fixture.detectChanges();
 
     component.cardForm.controls['name'].setValue('New Card');
@@ -100,14 +101,15 @@ describe('FormCardComponent Integration', () => {
   }));
 
   it('should call updateCard and emit event on valid form submit in update mode', fakeAsync(() => {
-    component.card = {
+    fixture.componentRef.setInput('card', {
       id: 'card-1',
       name: 'Old Name',
       desc: 'Old Desc',
       closed: false,
       idBoard: 'board-1',
       idList: 'list-1',
-    };
+    });
+
     fixture.detectChanges();
 
     component.cardForm.controls['name'].setValue('Updated Name');
@@ -138,7 +140,7 @@ describe('FormCardComponent Integration', () => {
 
   it('should show error toast if addNewCard fails', fakeAsync(() => {
     fixture.componentRef.setInput('idList', 'list-123');
-    component.card = null;
+    fixture.componentRef.setInput('card', undefined);
     fixture.detectChanges();
 
     component.cardForm.controls['name'].setValue('New Card');
@@ -153,14 +155,15 @@ describe('FormCardComponent Integration', () => {
   }));
 
   it('should show error toast if updateCard fails', fakeAsync(() => {
-    component.card = {
+    fixture.componentRef.setInput('card', {
       id: 'card-1',
       name: 'Old Name',
       desc: 'Old Desc',
       closed: false,
       idBoard: 'board-1',
       idList: 'list-1',
-    };
+    });
+
     fixture.detectChanges();
 
     component.cardForm.controls['name'].setValue('Updated Name');
@@ -176,7 +179,7 @@ describe('FormCardComponent Integration', () => {
   }));
 
   it('should mark form as touched when form invalid on submit', () => {
-    component.card = null;
+    fixture.componentRef.setInput('card', undefined);
     fixture.detectChanges();
 
     spyOn(component.cardForm, 'markAllAsTouched');

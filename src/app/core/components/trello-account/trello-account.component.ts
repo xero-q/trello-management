@@ -2,13 +2,7 @@
  * @class TrelloAccountComponent
  * @description Component that manages Trello account boards and board creation
  */
-import {
-  Component,
-  inject,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TrelloService } from '../../services/trello.service';
 import { map } from 'rxjs';
 import TrelloBoard from '../../../shared/interfaces/trello-board';
@@ -35,7 +29,7 @@ export class TrelloAccountComponent implements OnInit {
   /**
    * Signal that holds the list of Trello boards
    */
-  protected readonly boardsList: WritableSignal<TrelloBoard[]> = signal([]);
+  protected readonly boardsList = signal<TrelloBoard[]>([]);
 
   /**
    * Flag indicating if the component is loading

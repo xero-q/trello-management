@@ -34,7 +34,7 @@ export class FormCardComponent implements OnInit, AfterViewInit {
   /**
    * The form group instance for the card form.
    */
-  protected cardForm!: FormGroup;
+  public cardForm!: FormGroup;
 
   /**
    * The ID of the list where the card will be added or updated.

@@ -14,9 +14,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'planflow' title`, () => {
+  it(`should have the 'Trello Management' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('planflow');
+    expect(app.title).toEqual('Trello Management');
   });
 });

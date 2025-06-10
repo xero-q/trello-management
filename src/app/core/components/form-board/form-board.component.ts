@@ -36,7 +36,7 @@ export class FormBoardComponent implements OnInit, AfterViewInit {
   /**
    * Reactive form group for board creation
    */
-  protected boardForm!: FormGroup;
+  public boardForm!: FormGroup;
 
   /**
    * Event emitter that triggers when a board is added
