@@ -2,14 +2,7 @@
  * @class TrelloListComponent
  * @description Component that displays and manages a Trello list and its cards
  */
-import {
-  Component,
-  inject,
-  input,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { TrelloCardComponent } from '../trello-card/trello-card.component';
 import { Router } from '@angular/router';
 import { NgIf, NgStyle } from '@angular/common';
@@ -48,7 +41,7 @@ export class TrelloListComponent implements OnInit {
   /**
    * Signal that holds the list of cards
    */
-  cardsList: WritableSignal<TrelloCard[]> = signal([]);
+  cardsList = signal<TrelloCard[]>([]);
 
   /**
    * Flag controlling the visibility of the card creation form

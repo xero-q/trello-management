@@ -2,13 +2,7 @@
  * @class TrelloBoardComponent
  * @description Component that represents a Trello board and manages its lists and cards
  */
-import {
-  Component,
-  inject,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MarkdownModule } from 'ngx-markdown';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -64,7 +58,7 @@ export class TrelloBoardComponent implements OnInit {
   /**
    * Signal that holds the list of tasks/lists
    */
-  tasksLists: WritableSignal<TrelloList[]> = signal([]);
+  tasksLists = signal<TrelloList[]>([]);
 
   /**
    * Flag indicating if AI is currently processing a request
