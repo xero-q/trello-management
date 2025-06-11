@@ -38,6 +38,17 @@ export class StateService {
   private readonly fullName$ = this.fullNameSubject.asObservable();
 
   /**
+   * Current selected board Subject
+   */
+  private readonly selectedBoardSubject =
+    new BehaviorSubject<TrelloBoard | null>(null);
+
+  /**
+   * Current selected board Observable
+   */
+  private readonly selectedBoard$ = this.selectedBoardSubject.asObservable();
+
+  /**
    * User's metrics data including board and list information
    */
   userMetrics: UserMetrics = { boards: [] };
@@ -59,15 +70,15 @@ export class StateService {
    * @param id - data of the selected board
    */
   setSelectedBoard(board: TrelloBoard | null): void {
-    this.selectedBoard = board;
+    this.selectedBoardSubject.next(board);
   }
 
   /**
    * Gets the current board
    * @returns Current board
    */
-  getSelectedBoard(): TrelloBoard | null {
-    return this.selectedBoard;
+  getSelectedBoard(): Observable<TrelloBoard | null> {
+    return this.selectedBoard$;
   }
 
   /**

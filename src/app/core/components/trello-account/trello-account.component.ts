@@ -2,14 +2,20 @@
  * @class TrelloAccountComponent
  * @description Component that manages Trello account boards and board creation
  */
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { TrelloService } from '../../services/trello.service';
 import { map } from 'rxjs';
 import TrelloBoard from '../../../shared/interfaces/trello-board';
 import { Router } from '@angular/router';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { FormBoardComponent } from '../form-board/form-board.component';
-import { NgStyle } from '@angular/common';
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { StateService } from '../../services/state.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
@@ -21,9 +27,16 @@ import ROUTES from '../../../shared/constants/routes';
  */
 @Component({
   selector: 'app-trello-account',
-  imports: [LoaderComponent, FormBoardComponent, NgStyle, ModalComponent],
+  imports: [
+    LoaderComponent,
+    FormBoardComponent,
+    NgStyle,
+    ModalComponent,
+    AsyncPipe,
+  ],
   templateUrl: './trello-account.component.html',
   styleUrl: './trello-account.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrelloAccountComponent implements OnInit {
   /**

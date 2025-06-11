@@ -6,7 +6,7 @@
       " @for (board of boardsList(); track board.id) {
       <option
         value="{{ board.id }}"
-        [selected]="board.id === stateService.getSelectedBoard()?.id"
+        [selected]="board.id === (stateService.getSelectedBoard() | async)?.id"
       >
         {{ board.name }}
       </option>
