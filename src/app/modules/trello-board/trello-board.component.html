@@ -4,8 +4,8 @@
   </button>
   @if (isPromptingAI()){
   <app-loader />
-  } @else {@if (boardRecommendation){
-  <ng-container *ngIf="displayGeminiResponse()">
+  } @else {@if (boardRecommendation){ @if (displayGeminiResponse()){
+  <ng-container>
     <app-modal (closeModal)="closeModal()">
       <div class="gemini-response">
         <h3>AI Response:</h3>
@@ -13,13 +13,15 @@
       </div>
     </app-modal>
   </ng-container>
-  } }
+  } } }
 </div>
 <div class="trello-list-container">
   @if (isLoading()) {
   <app-loader />
   } @else {
-  <h3 class="h3-header">{{ stateService.getSelectedBoard()?.name }}</h3>
+  <h3 class="h3-header">
+    {{ (stateService.getSelectedBoard() | async)?.name }}
+  </h3>
 
   @if (getBoardMetrics().length > 0) {
   <div class="metrics">

@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { TrelloListComponent } from '../trello-list/trello-list.component';
 import { ToastrService } from 'ngx-toastr';
-import { NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { ModalComponent } from '../../core/components/modal/modal.component';
 import TrelloList from '../../shared/interfaces/trello-list';
@@ -29,7 +29,7 @@ import ROUTES from '../../shared/constants/routes';
     TrelloListComponent,
     LoaderComponent,
     ModalComponent,
-    NgIf,
+    AsyncPipe,
   ],
   templateUrl: './trello-board.component.html',
   styleUrl: './trello-board.component.scss',
